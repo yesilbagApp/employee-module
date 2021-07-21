@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet author="BurakYesilbag (generated)" id="1626622378951-1">
+        <createTable tableName="day_off">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="day_offPK"/>
+            </column>
+            <column defaultValueBoolean="false" name="deleted" type="BIT(1)"/>
+            <column name="annual_permit" type="INT"/>
+            <column name="employee_id" type="BIGINT"/>
+            <column name="start_date" type="datetime"/>
+            <column name="finish_date" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BurakYesilbag (generated)" id="1626622378951-2">
+        <createTable tableName="day_off_request">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="day_off_requestPK"/>
+            </column>
+            <column defaultValueBoolean="false" name="deleted" type="BIT(1)"/>
+            <column name="day_off_finish_date" type="datetime"/>
+            <column name="day_off_start_date" type="datetime"/>
+            <column name="status" type="INT"/>
+            <column name="work_days" type="INT"/>
+            <column name="approved_employee_id" type="BIGINT"/>
+            <column name="employee_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BurakYesilbag (generated)" id="1626622378951-3">
+        <createTable tableName="employee">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="employeePK"/>
+            </column>
+            <column defaultValueBoolean="false" name="deleted" type="BIT(1)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="surname" type="VARCHAR(255)"/>
+            <column name="work_start_date" type="datetime"/>
+            <column name="manager_id" type="BIGINT"/>
+            <column name="title_id" type="BIGINT"/>
+            <column name="employee_number" type="BIGINT">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="BurakYesilbag (generated)" id="1626622378951-4">
+        <createTable tableName="title">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="titlePK"/>
+            </column>
+            <column defaultValueBoolean="false" name="deleted" type="BIT(1)"/>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="BurakYesilbag (generated)" id="1626622378951-5">
+        <addUniqueConstraint columnNames="code" constraintName="UC_TITLECODE_COL" tableName="title"/>
+    </changeSet>
+    <changeSet author="BurakYesilbag (generated)" id="1626622378951-6">
+        <addForeignKeyConstraint baseColumnNames="title_id" baseTableName="employee"
+                                 constraintName="FK2syy5gt7njoukfot8dhcccr96" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="title"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="BurakYesilbag (generated)" id="1626622378951-7">
+        <addForeignKeyConstraint baseColumnNames="manager_id" baseTableName="employee"
+                                 constraintName="FKou6wbxug1d0qf9mabut3xqblo" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employee"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="BurakYesilbag (generated)" id="1626622378951-8">
+        <addForeignKeyConstraint baseColumnNames="approved_employee_id" baseTableName="day_off_request"
+                                 constraintName="FKssr8xywfo5lgcl1o6wv2m54h3" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employee"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="BurakYesilbag (generated)" id="1626622378951-9">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="day_off_request"
+                                 constraintName="FKtj75g2pq3c3gt81uuvqja8cye" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employee"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet author="BurakYesilbag (generated)" id="1626622378951-10">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="day_off"
+                                 constraintName="FKtm4dis4gedt7co919d89wc4ga" deferrable="false"
+                                 initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employee"
+                                 validate="true"/>
+    </changeSet>
+
+    <changeSet author="BurakYesilbag (generated)" id="1626622378951-11">
+        <sqlFile path="classpath:db/changelog/data/data.sql"/>
+    </changeSet>
+
+</databaseChangeLog>
