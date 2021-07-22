@@ -10,17 +10,7 @@ The microservice runs with Java 1.8. It requires SQL service and Lombok plugin.
 
 * [About the Microservice](#about-the-microservice)
 * [Getting Started](#getting-started)
-    * [Prerequisites](#prerequisites)
-    * [Installation](#installation)
-    * [Configurations](#configurations)
-        * [Application](#application-configurations)
-        * [Database](#database-configurations)
     * [Debug](#debug)
-
-* [Outbound Services](#outbound-services)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
-* [Latest's Clients](#latests-clients)
 * [API Resources](#api-resources)
 
 <!-- ABOUT THE MICROSERVICE -->
