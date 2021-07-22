@@ -118,6 +118,7 @@ public class DayOffRequestCommandServiceImpl implements DayOffRequestCommandServ
     @Override
     public ResponseEntity<T> rejectedDayOffRequest(Long dayOffRequestId) {
         DayOffRequest dayoffRequest = this.dayOffRequestQueryService.getDayOffRequest(dayOffRequestId);
+        dayoffRequest.setStatus(Status.REJECTED);
         dayoffRequest = this.dayoffRequestRepository.save(dayoffRequest);
 
         return ResponseHandler.generateResponse(this.localizationService.getLocalizationMessage("day.off.request.rejected.successfully"), HttpStatus.OK, dayoffRequest.getId());
