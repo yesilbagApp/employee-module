@@ -3,7 +3,7 @@
 
 ### Prerequisites
 
-The microservice runs with Java 1.8. It requires SQL service and Lombok plugin.
+The microservice runs with Java 1.8. It requires MySQL service and Lombok plugin.
 
 ### Installation
 ## Table of Contents
