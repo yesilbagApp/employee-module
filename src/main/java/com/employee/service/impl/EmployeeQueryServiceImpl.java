@@ -40,7 +40,7 @@ public class EmployeeQueryServiceImpl implements EmployeeQueryService {
     public ResponseEntity<T> getEmployeeByNameAsDTO(String name) {
         Employee employee = this.employeeRepository.findByName(name);
         if (employee == null) {
-            return ResponseHandler.generateResponse(this.localizationService.getLocalizationMessage("employee.not.found"), HttpStatus.OK, null);
+            return ResponseHandler.generateResponse(this.localizationService.getLocalizationMessage("employee.not.found"), HttpStatus.NOT_FOUND, null);
         }
         return ResponseHandler.generateResponse(this.localizationService.getLocalizationMessage("retrieved.successfully"), HttpStatus.OK, EmployeeMapper.INSTANCE.toDTO(employee));
     }

@@ -58,7 +58,7 @@ public class DayOffRequestCommandServiceImpl implements DayOffRequestCommandServ
 
         Employee employee = this.employeeQueryService.getEmployeeById(createDayOffRequest.getEmployeeId());
         if (employee == null) {
-            return ResponseHandler.generateResponse(this.localizationService.getLocalizationMessage("employee.not.found"), HttpStatus.OK, null);
+            return ResponseHandler.generateResponse(this.localizationService.getLocalizationMessage("employee.not.found"), HttpStatus.NOT_FOUND, null);
         }
 
         DayOff dayOff = this.dayOffQueryService.getDayOffByEmployeeId(createDayOffRequest.getEmployeeId());
